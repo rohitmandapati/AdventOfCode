@@ -75,8 +75,8 @@ public class ScratchCard {
         Scanner scan = new Scanner(file);
 
         // for Part 2
-        List cardsList = new ArrayList<ScratchCard>();
-        Queue cardsQueue = new LinkedList<ScratchCard>();
+        List<ScratchCard> cardsList = new ArrayList<ScratchCard>();
+        Queue<ScratchCard> cardsQueue = new LinkedList<ScratchCard>();
         
         
         int totalScore = 0;
@@ -88,9 +88,11 @@ public class ScratchCard {
             totalScore += scratch.getScore();
 
             //for Part 2
-            cardsList.add(scratch);
+            cardsList.add((ScratchCard) scratch);
             cardsQueue.add(scratch);
         }
+
+        scan.close();
 
         System.out.println(totalScore);
 
