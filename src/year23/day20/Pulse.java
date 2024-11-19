@@ -23,4 +23,9 @@ public class Pulse {
     public String toString() {
         return this.pulseType.toString() + " " + this.destination.toString();
     }
+
+    public boolean equals(Pulse other) {
+        return (this.destination.equals(other.destination)
+            && this.pulseType == other.pulseType);
+    }
 }

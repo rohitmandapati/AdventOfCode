@@ -7,4 +7,5 @@ public interface Module {
     void receivePulse(PulseType pulseType, Queue<Pulse> pulseQueue, Module source);
     void addDestination(Module module);
     String toString();
+    String getName();
 }

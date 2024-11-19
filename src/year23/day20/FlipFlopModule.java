@@ -41,5 +41,10 @@ public class FlipFlopModule implements Module {
     public String toString() {
         return "%" + this.name;
     }
+
+    public String getName() { return name; }
     
+    public boolean equals(Module other) {
+        return (this.getName().equals(other.getName()));
+    }
 }

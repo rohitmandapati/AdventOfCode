@@ -71,13 +71,31 @@ public class Simulator {
             scan.close();
             return modules;
         }
+        
+    public static long findGCD(long a, long b) {
+        if (b == 0)
+            return a;
+        return findGCD(b, a % b);
+    }
+
+    public static long findLCM(long a, long b) {
+        return a * b / findGCD(a, b);
+    }
+    
+    public static long findLCMArray(int[] arr) {
+        long lcm = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            lcm = findLCM(lcm, arr[i]);
+        }
+        return lcm;
+    }
 
     public static void main(String[] args) throws FileNotFoundException {
         String file = "src/year23/day20/input.txt";
         Map<String, Module> modules = parse(file);
 
 
-        Module broadcast = modules.get("broadcaster");
+        BroadcastModule broadcast = (BroadcastModule) modules.get("broadcaster");
 
         long totalLowPulse = 0l;
         long totalHighPulse = 0l;
@@ -105,6 +123,36 @@ public class Simulator {
         System.out.println(totalHighPulse);
         System.out.println(product);
 
+        // ------------ Part 2 ------------
+
+        modules = parse(file);
+        System.out.println(modules.get("rs"));
+
+        broadcast = (BroadcastModule) modules.get("broadcaster"); 
+        List<Module> entries = broadcast.destinations;
+        int[] buttonPresses = new int[entries.size()];
+        System.out.println(entries);
+        for (int i = 0; i < entries.size(); i++) {
+            int presses = 0;
+            Pulse p = new Pulse(PulseType.LOW, entries.get(i), broadcast);
+            
+            Queue<Pulse> pulseQueue = new LinkedList<Pulse>();
+            while(!(p.destination == modules.get("rs") && p.pulseType == PulseType.HIGH)) {
+                if (pulseQueue.isEmpty()) {
+                    p = new Pulse(PulseType.LOW, entries.get(i), broadcast);
+                    pulseQueue.add(p);
+                    presses++;
+                }
+                p = pulseQueue.poll();
+                p.destination.receivePulse(p.pulseType, pulseQueue, p.source);
+            }
+
+            buttonPresses[i] = presses;            
+        }
+
+        long lcm = findLCMArray(buttonPresses);
+        System.out.println(Arrays.toString(buttonPresses));
+        System.out.println(lcm);
     }
     
 }

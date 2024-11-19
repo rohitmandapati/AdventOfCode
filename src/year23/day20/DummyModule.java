@@ -1,6 +1,6 @@
 package year23.day20;
 
-import java.util.Queue;
+import java.util.*;
 
 import year23.day20.Pulse.PulseType;
 
@@ -12,6 +12,7 @@ import year23.day20.Pulse.PulseType;
  */ 
 public class DummyModule implements Module{
     String name;
+    List<Module> destinations = new ArrayList<Module>();
 
     DummyModule(String name) {
         this.name = name;
@@ -30,5 +31,11 @@ public class DummyModule implements Module{
 
     public String toString() {
         return this.name + " Dummy";
+    }
+
+    public String getName() { return name; }
+
+    public boolean equals(Module other) {
+        return (this.getName().equals(other.getName()));
     }
 }
