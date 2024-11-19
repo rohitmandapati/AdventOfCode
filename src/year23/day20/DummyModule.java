@@ -20,12 +20,12 @@ public class DummyModule implements Module{
     // Literally does nothing, adds no pulses to pulseQueue
     @Override
     public void receivePulse(PulseType pulseType, Queue<Pulse> pulseQueue, Module source) {
-
+        return;
     }
 
     @Override
     public void addDestination(Module module) {
-
+        return;
     }
 
     public String toString() {

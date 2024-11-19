@@ -10,7 +10,7 @@ public class FlipFlopModule implements Module {
     String name;
     List<Module> destinations = new ArrayList<Module>();
     
-    boolean isOn = true;
+    boolean isOn = false;
 
     public FlipFlopModule(String name) {
         this.name = name;
@@ -28,7 +28,7 @@ public class FlipFlopModule implements Module {
         else output = PulseType.LOW;
 
         for (Module destination : destinations) {
-            pulseQueue.add(new Pulse(output, destination));
+            pulseQueue.add(new Pulse(output, destination, source));
         }
     }
 

@@ -17,7 +17,7 @@ public class BroadcastModule implements Module {
     @Override
     public void receivePulse(PulseType pulseType, Queue<Pulse> pulseQueue, Module source) {
         for (Module destination : destinations) {
-            pulseQueue.add(new Pulse(pulseType, destination));
+            pulseQueue.add(new Pulse(pulseType, destination, source));
         }
     }
 

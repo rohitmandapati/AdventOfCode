@@ -35,7 +35,7 @@ public class ConjunctionModule implements Module {
         else output = PulseType.HIGH;
 
         for (Module destination : destinations) {
-            pulseQueue.add(new Pulse(output, destination));
+            pulseQueue.add(new Pulse(output, destination, source));
         }
     }
 

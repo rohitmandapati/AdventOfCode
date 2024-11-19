@@ -10,11 +10,6 @@ import java.util.Arrays;
 
 public class Simulator {
 
-    // static Map<String, String> moduleTypes;
-    static Map<Module, List<Module>> moduleOutputs;
-    static Map<Module, Set<Module>> moduleInputs;
-    static Set<Map<String, Module>> allModules;
-
     public static Map<String, Module> parse(String filename) throws FileNotFoundException {
             File file = new File(filename);
             Scanner scan = new Scanner(file);
@@ -79,16 +74,16 @@ public class Simulator {
 
         Module broadcast = modules.get("broadcaster");
 
-        long totalLowPulse = 1l;
+        long totalLowPulse = 0l;
         long totalHighPulse = 0l;
 
         for (int i = 0; i < 1000; i++) {
             Queue<Pulse> pulseQueue = new LinkedList<Pulse>();
             pulseQueue.add(new Pulse(PulseType.LOW, broadcast, null));
             while (!pulseQueue.isEmpty()) {
-                // for(Pulse p : pulseQueue) { 
-                //     System.out.println(p.toString()); 
-                // }
+                for(Pulse p : pulseQueue) { 
+                    System.out.println(p.toString()); 
+                }
                 Pulse p = pulseQueue.poll();
                 if (p.pulseType == PulseType.LOW) {
                     totalLowPulse++;
