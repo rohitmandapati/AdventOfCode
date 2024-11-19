@@ -2,11 +2,16 @@ package year23.day20;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Scanner;
 
 import year23.day20.Pulse.PulseType;
-
-import java.util.Arrays;
 
 public class Simulator {
 
@@ -84,6 +89,7 @@ public class Simulator {
                 for(Pulse p : pulseQueue) { 
                     System.out.println(p.toString()); 
                 }
+                System.out.println("------------");
                 Pulse p = pulseQueue.poll();
                 if (p.pulseType == PulseType.LOW) {
                     totalLowPulse++;

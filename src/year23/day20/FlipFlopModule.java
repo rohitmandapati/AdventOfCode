@@ -28,7 +28,7 @@ public class FlipFlopModule implements Module {
         else output = PulseType.LOW;
 
         for (Module destination : destinations) {
-            pulseQueue.add(new Pulse(output, destination, source));
+            pulseQueue.add(new Pulse(output, destination, this));
         }
     }
 

@@ -21,8 +21,8 @@ public class ConjunctionModule implements Module {
 
     @Override
     public void receivePulse(PulseType pulseType, Queue<Pulse> pulseQueue, Module source) {
-        // Module inputModule = source;
-        // inputStore.put(inputModule, pulseType);
+        Module inputModule = source;
+        inputStore.put(inputModule, pulseType);
 
         boolean allHigh = true;
         for (Module key : inputStore.keySet()) {
@@ -35,7 +35,7 @@ public class ConjunctionModule implements Module {
         else output = PulseType.HIGH;
 
         for (Module destination : destinations) {
-            pulseQueue.add(new Pulse(output, destination, source));
+            pulseQueue.add(new Pulse(output, destination, this));
         }
     }
 
