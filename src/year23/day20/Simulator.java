@@ -26,7 +26,7 @@ public class Simulator {
                 String line = scan.nextLine();
 
                 String[] parts = line.split("->");
-                System.out.println(Arrays.toString(parts));
+                // System.out.println(Arrays.toString(parts));
 
                 String mod = parts[0].trim();
                 Module module;
@@ -86,17 +86,15 @@ public class Simulator {
             Queue<Pulse> pulseQueue = new LinkedList<Pulse>();
             pulseQueue.add(new Pulse(PulseType.LOW, broadcast, null));
             while (!pulseQueue.isEmpty()) {
-                for(Pulse p : pulseQueue) { 
-                    System.out.println(p.toString()); 
-                }
-                System.out.println("------------");
+                // for(Pulse p : pulseQueue) { 
+                //     System.out.println(p.toString()); 
+                // }
+                // System.out.println("------------");
                 Pulse p = pulseQueue.poll();
                 if (p.pulseType == PulseType.LOW) {
                     totalLowPulse++;
-                    // System.out.println("low: " + totalLowPulse);
                 } else {
                     totalHighPulse++;
-                    // System.out.println("high: " + totalHighPulse);
                 }
                 p.destination.receivePulse(p.pulseType, pulseQueue, p.source);
             }
