@@ -92,6 +92,7 @@ public class Data {
             for (String s : nums) {
                 intList.add(Integer.parseInt(s));
             }
+            @SuppressWarnings("unused")
             Data e = new Data(intList);
         }
         scan.close();
